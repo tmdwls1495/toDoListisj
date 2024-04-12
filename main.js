@@ -31,7 +31,6 @@ function render(){
     }else if(mode === "ongoing" || mode === "done"){
         list = filterList
     }
-
     for(let i=0;i<list.length;i++){
         if(list[i].isComplete == true) {
             resultHTML += `<div class="task">
@@ -75,21 +74,25 @@ function deleteTask(id){
 }
 function filter(event){
     mode = event.target.id;
+    filterList = [];
     if (mode === "ongoing"){
         for(let i=0;i < taskList.length;i++){
             if(taskList[i].isComplete === false){
                 filterList.push(taskList[i])
             }
         }
+        
     }else if(mode === "done"){
         for(let i=0;i < taskList.length;i++){
             if(taskList[i].isComplete === true){
                 filterList.push(taskList[i])
             }
         }
+        
     }
     render();
-}
+    }
+
 function randomIDGenerate(){
     return '_' + Math.random().toString(36).substring(2, 9);
 }
